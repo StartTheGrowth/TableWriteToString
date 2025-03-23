@@ -10,16 +10,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ConvertTable {
+    //Logger logger = LogManager.getLogger(ConvertTable.class.getName());
     private String readableFile;
     private String writableFile;
 
     public ConvertTable(String readableFile, String writableFile) throws IOException {
+        //logger.info("Constructor ConvertTable");
         this.readableFile = readableFile;
         this.writableFile = writableFile;
-        write();
+        rewrite();
     }
 
-    public void write() throws IOException {
+    public void rewrite() throws IOException {
+       // logger.info("rewrite");
         File file = new File(readableFile);
         FileInputStream fileInputStream = new FileInputStream(file);
         Workbook workbook = new XSSFWorkbook(fileInputStream);
@@ -53,5 +56,6 @@ public class ConvertTable {
         }
         fileInputStream.close();
         fileOutputStream.close();
+        System.out.println("Копирование завершено");
     }
 }
